@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #6b1e2e;
+  --color-accent: #8f2f42;
+  --color-background: #fffbfa;
+  --color-bg-alt: #f8eef0;
+  --color-text: #2a1218;
+  --color-text-muted: #7a5560;
+  --color-border: #ead5da;
+  --color-surface: #ffffff;
+  --color-on-primary: #fffbfa;
+  --radius: 14px;
+  --font-heading: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-montserrat), Montserrat, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body), sans-serif;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), serif;
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  #cardapio,
+  #categorias,
+  #contato,
+  #sobre {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+@layer utilities {
+  .text-on-primary {
+    color: var(--color-on-primary);
+  }
+}
+
+@keyframes storyProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 45%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes shimmerLine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.story-progress {
+  width: 0%;
+  animation: storyProgress 5.5s linear forwards;
+}
+
+.editorial-quote {
+  font-family: var(--font-heading), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.editorial-quote::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin-bottom: 1.1rem;
+  background: var(--color-primary);
+}
+
+/* Temas de confeitaria — fundo na cor da marca */
+html[data-theme='valencaConfeitaria'] body,
+html[data-theme='lubonConfeitaria'] body,
+html[data-audience='confeitaria'] body {
+  background-image:
+    radial-gradient(ellipse 110% 70% at 8% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 52%),
+    radial-gradient(ellipse 90% 60% at 100% 100%, color-mix(in srgb, var(--color-accent) 9%, transparent), transparent 55%),
+    linear-gradient(180deg, var(--color-background) 0%, color-mix(in srgb, var(--color-bg-alt) 55%, white) 100%);
+  background-attachment: fixed;
+}
+
+html[data-theme='valencaConfeitaria'] h1,
+html[data-theme='valencaConfeitaria'] h2,
+html[data-theme='valencaConfeitaria'] h3,
+html[data-theme='valencaConfeitaria'] .font-heading,
+html[data-theme='lubonConfeitaria'] h1,
+html[data-theme='lubonConfeitaria'] h2,
+html[data-theme='lubonConfeitaria'] h3,
+html[data-theme='lubonConfeitaria'] .font-heading {
+  letter-spacing: 0.01em;
+}
+
+.menu-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.menu-dots {
+  flex: 1 1 auto;
+  min-width: 1.5rem;
+  height: 1px;
+  margin-bottom: 0.35rem;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-border) 90%, transparent) 40%,
+    transparent 0%
+  );
+  background-position: bottom;
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
+}
+
+.menu-item:hover .menu-dots {
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-primary) 55%, transparent) 40%,
+    transparent 0%
+  );
+}
+
+.menu-category-tile {
+  background-image: linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent 55%);
+}
+
+.profile-ring {
+  background: conic-gradient(
+    from 180deg,
+    var(--color-primary),
+    color-mix(in srgb, var(--color-accent) 55%, white),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  animation: floatY 5s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.shadow-owner-photo {
+  box-shadow: 0 24px 60px -28px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+.cta-pulse {
+  animation: softPulse 2.4s ease-out infinite;
+}
+
+.menu-quote {
+  position: relative;
+}
+
+/* ——— Detalhes decorativos de fundo (seguem a cor do tema) ——— */
+.deco-vignette {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, color-mix(in srgb, var(--color-accent) 9%, transparent), transparent 50%),
+    radial-gradient(ellipse 55% 45% at 0% 90%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 50%);
+}
+
+.deco-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(48px);
+  opacity: 0.55;
+  animation: floatY 9s ease-in-out infinite;
+}
+
+.deco-blob-a {
+  top: 12%;
+  left: -6%;
+  width: 280px;
+  height: 280px;
+  background: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.deco-blob-b {
+  top: 48%;
+  right: -8%;
+  width: 320px;
+  height: 320px;
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  animation-delay: -3s;
+}
+
+.deco-blob-c {
+  bottom: 8%;
+  left: 28%;
+  width: 220px;
+  height: 220px;
+  background: color-mix(in srgb, var(--color-primary) 14%, white);
+  animation-delay: -5.5s;
+}
+
+.deco-ornament {
+  position: absolute;
+  color: var(--color-primary);
+  opacity: 0.14;
+}
+
+.deco-ornament-tl {
+  top: 7rem;
+  left: 1.25rem;
+  width: 7rem;
+  height: 7rem;
+  animation: floatY 7s ease-in-out infinite;
+}
+
+.deco-ornament-br {
+  right: 1rem;
+  bottom: 10rem;
+  width: 9rem;
+  height: 9rem;
+  opacity: 0.12;
+  animation: floatY 8.5s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.deco-ornament-ml {
+  top: 42%;
+  left: 0.5rem;
+  width: 2.5rem;
+  height: 10rem;
+  opacity: 0.1;
+}
+
+.deco-corner {
+  position: absolute;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-color: color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+.deco-corner-tr {
+  top: 5.5rem;
+  right: 1.25rem;
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+
+.deco-corner-bl {
+  bottom: 2rem;
+  left: 1.25rem;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+
+.deco-owner-wash {
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 40%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 80%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 55%);
+}
+
+@media (max-width: 768px) {
+  .deco-ornament-tl,
+  .deco-ornament-br,
+  .deco-ornament-ml,
+  .deco-corner {
+    opacity: 0.08;
+  }
+
+  .deco-blob-a,
+  .deco-blob-b,
+  .deco-blob-c {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .story-progress {
+    animation: none !important;
+    width: 100%;
+  }
+
+  .cta-pulse,
+  .profile-ring,
+  .deco-blob,
+  .deco-ornament-tl,
+  .deco-ornament-br {
+    animation: none !important;
+  }
+}
